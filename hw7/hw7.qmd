@@ -103,15 +103,47 @@ and their relationship with one another.
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
-        string first_name
-        string last_name
+    PEOPLE |o--|{ PEOPLESKILLS : P-PS
+    SKILLS |o--|{  PEOPLESKILLS : S-PS
+    PEOPLE ||--o{ PEOPLEROLES : P-PR
+    ROLES ||--o{ PEOPLEROLES : S-PR
+
+    SKILLS{
+        int skills_id
+        string skills_name
+        string dskills_escription
+        string skills_tag
+        string skills_url
+        int skills_time_commitment
     }
-    DELIVERY-ADDRESS {
+
+    PEOPLE{
         int id
+        string people_first_name
+        string people_last_name
+        string people_email
+        string people_linkedin_url
+        string people_headshot_url
+        string people_discord_handle
+        string people_brief_bio
+        date people_date_joined
+    }
+    PEOPLESKILLS{
+        int id
+        int skills_id
+        int people_id
+        date date_acquired
+    }
+    ROLES{
+        int id
+        string name
+        int sort_priority
+    }
+    PEOPLEROLES{
+        int skills_id
+        int people_id
+        int role_id
+        date date_assigned
     }
 ```
 
